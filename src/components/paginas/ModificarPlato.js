@@ -30,25 +30,25 @@ const ModificarPlato = ({setModificar, modificar, idModificar, infoModificar}) =
 
     const formik = useFormik({
         initialValues:{
-            nombre:marca,
-            precio: año,
-            categoria:modelo,
+            marca:marca,
+            año: año,
+            modelo:modelo,
             descripcion: descripcion,
         },
 
 
         validationSchema: Yup.object({
-            nombre: Yup.string()
+            marca: Yup.string()
                     .min(3, 'Los nombres deben tener al menos 3 caracteres')
                     .required('El nombre es obligatorio'),
 
             
-            precio: Yup.number()
+            año: Yup.number()
             .min(1, 'Debes ingresar un numero')
             .required('El precio es obligatorio'),
 
             
-            categoria: Yup.string()
+            modelo: Yup.string()
             .min(3, 'Los nombres deben tener al menos 3 caracteres')
                     .required('La categoría es obligatoria'),
 
@@ -66,6 +66,7 @@ const ModificarPlato = ({setModificar, modificar, idModificar, infoModificar}) =
                 auto.existencia= existencia;
                 auto.image = urlimagen;
                 firebase.db.collection('autos').doc(id).update(auto)
+
                                
             } catch (error) {
                 console.log(error)
@@ -108,7 +109,7 @@ const handleUploadSuccess = async nombre =>{
     return(
         <>
         
-        <h1 className="text-3xl font-light mb-4 w-full text-center"> Modificar Plato </h1>
+        <h1 className="text-3xl font-light mb-4 w-full text-center"> Modificar Auto </h1>
 
         <div className="flex justify-center mt-10">
 
@@ -117,7 +118,7 @@ const handleUploadSuccess = async nombre =>{
                 onSubmit={formik.handleSubmit}
                 >
                     <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nombre">Nombre del plato</label>
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="marca">Marca</label>
 
                         <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-300 focus:shadow-none"
                         id="marca"
@@ -138,7 +139,29 @@ const handleUploadSuccess = async nombre =>{
                     ) : null}
 
                     <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="precio">Precio</label>
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="modelo">Modelo</label>
+
+                        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-300 focus:shadow-none"
+                        id="modelo"
+                        type="text"
+                        placeholder="Modelo"
+                        value={formik.values.modelo}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        />
+
+                    </div>
+
+                    {formik.touched.marca && formik.errors.marca ? (
+                        <div className="mb-5 text-sm bg-red-100 border-l-4 border-red-500 text-red-700 p-2" role="alert">
+                           <p className="font-bold"> Hubo un error: </p>
+                            <p>{formik.errors.marca}</p>
+                        </div>
+                    ) : null}
+
+
+                    <div className="mb-4">
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="año">Año</label>
 
                         <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-300 focus:shadow-none"
                         id="año"
@@ -159,7 +182,7 @@ const handleUploadSuccess = async nombre =>{
                         </div>
                     ) : null}
 
-                    <div className="mb-4">
+                    {/* <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="categoria">Categoria</label>
 
                         <select
@@ -188,7 +211,7 @@ const handleUploadSuccess = async nombre =>{
                            <p className="font-bold"> Hubo un error: </p>
                             <p>{formik.errors.categoria}</p>
                         </div>
-                    ) : null}
+                    ) : null} */}
 
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="imagen">Imagen</label>
@@ -220,7 +243,7 @@ const handleUploadSuccess = async nombre =>{
 
 
                     <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="descripcion">Descripción del plato</label>
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="descripcion">Descripción</label>
 
                         <textarea className="h-30 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-300 focus:shadow-none"
                         id="descripcion"
@@ -245,7 +268,7 @@ const handleUploadSuccess = async nombre =>{
                     <input 
                     type="submit"
                     className=" bg-gray-800 w-full mt-5 p-2 text-white uppercase font-bold hover:bg-gray-900 hover:text-yellow-500"
-                    value="modificar plato"/>
+                    value="modificar auto"/>       
 
                     <button 
                     

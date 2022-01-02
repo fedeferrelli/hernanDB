@@ -22,6 +22,10 @@ const Menu = () =>{
 
     const [infoModificar, setInfoModificar] = useState({})
 
+    const [buscar, setBuscar] = useState('f')
+
+    const [autosParaMostar, setautosParaMostar] = useState({})
+
     
     useEffect(() => {
 
@@ -44,8 +48,9 @@ const Menu = () =>{
 
         setPlatos(platos)
     }
-    
+ 
 
+ 
     return(
         <>
         
@@ -66,9 +71,11 @@ const Menu = () =>{
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nombre">Buscar Auto</label>
 
                         <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-300 focus:shadow-none"
-                        id="nombre"
+                        id="buscar"
                         type="text"
                         placeholder="buscar"
+
+                        onChange={e => setBuscar(e.target.value)} 
                         
                         />
 
