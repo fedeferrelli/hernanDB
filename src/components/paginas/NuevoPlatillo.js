@@ -31,25 +31,25 @@ const NuevoPlatillo = () =>{
 
     const formik = useFormik({
         initialValues:{
-            nombre:'',
-            precio: '',
-            categoria:'',
+            marca:'',
+            año: '',
+            modelo:'',
             descripcion:'',
         },
 
 
         validationSchema: Yup.object({
-            nombre: Yup.string()
-                    .min(3, 'Los nombres deben tener al menos 3 caracteres')
-                    .required('El nombre es obligatorio'),
+            marca: Yup.string()
+            .min(3, 'Los nombres deben tener al menos 3 caracteres')
+            .required('El nombre es obligatorio'),
 
             
-            precio: Yup.number()
+            año: Yup.number()
             .min(1, 'Debes ingresar un numero')
             .required('El precio es obligatorio'),
 
             
-            categoria: Yup.string()
+            modelo: Yup.string()
             .min(3, 'Los nombres deben tener al menos 3 caracteres')
                     .required('La categoría es obligatoria'),
 
@@ -63,7 +63,7 @@ const NuevoPlatillo = () =>{
             try {
                 plato.existencia= true;
                 plato.image = urlimagen;
-                firebase.db.collection('productos').add(plato)
+                firebase.db.collection('autos').add(plato)
 
                 navigate('/menu');
                 
@@ -92,7 +92,7 @@ const handleUploadSuccess = async nombre =>{
 
     const url = await firebase
                 .storage
-                .ref('productos')
+                .ref('autos')
                 .child(nombre)
                 .getDownloadURL()
 
@@ -105,7 +105,7 @@ const handleUploadSuccess = async nombre =>{
     return(
         <>
         
-        <h1 className="text-3xl font-light mb-4 w-full text-center"> Agregar Plato </h1>
+        <h1 className="text-3xl font-light mb-4 w-full text-center"> Agregar Auto </h1>
 
         <div className="flex justify-center mt-10">
 
@@ -114,56 +114,81 @@ const handleUploadSuccess = async nombre =>{
                 onSubmit={formik.handleSubmit}
                 >
                     <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nombre">Nombre del plato</label>
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nombre">Marca</label>
 
                         <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-300 focus:shadow-none"
-                        id="nombre"
+                        id="marca"
                         type="text"
-                        placeholder="Nombre"
-                        value={formik.values.nombre}
+                        placeholder="Marca"
+                        value={formik.values.marca}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         />
 
                     </div>
 
-                    {formik.touched.nombre && formik.errors.nombre ? (
+                    {formik.touched.marca && formik.errors.marca ? (
                         <div className="mb-5 text-sm bg-red-100 border-l-4 border-red-500 text-red-700 p-2" role="alert">
                            <p className="font-bold"> Hubo un error: </p>
-                            <p>{formik.errors.nombre}</p>
+                            <p>{formik.errors.marca}</p>
                         </div>
                     ) : null}
 
                     <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="precio">Precio</label>
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nombre">Modelo</label>
 
                         <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-300 focus:shadow-none"
-                        id="precio"
-                        type="number"
-                        placeholder="20"
-                        min="0"
-                        value={formik.values.precio}
+                        id="modelo"
+                        type="text"
+                        placeholder="Modelo"
+                        value={formik.values.modelo}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         />
 
                     </div>
 
-                    {formik.touched.precio && formik.errors.precio ? (
+                    {formik.touched.modelo && formik.errors.modelo ? (
                         <div className="mb-5 text-sm bg-red-100 border-l-4 border-red-500 text-red-700 p-2" role="alert">
                            <p className="font-bold"> Hubo un error: </p>
-                            <p>{formik.errors.precio}</p>
+                            <p>{formik.errors.modelo}</p>
                         </div>
                     ) : null}
 
                     <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="categoria">Categoria</label>
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="precio">Año</label>
+
+                        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-300 focus:shadow-none"
+                        id="año"
+                        type="number"
+                        placeholder="2021"
+                        min="0"
+                        value={formik.values.año}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        />
+
+                    </div>
+
+                    {formik.touched.año && formik.errors.año ? (
+                        <div className="mb-5 text-sm bg-red-100 border-l-4 border-red-500 text-red-700 p-2" role="alert">
+                           <p className="font-bold"> Hubo un error: </p>
+                            <p>{formik.errors.año}</p>
+                        </div>
+                    ) : null}
+
+
+
+
+
+          {/*           <div className="mb-4">
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="categoria">Modelo</label>
 
                         <select
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-300 focus:shadow-none"
-                        id="categoria"
-                        name="categoria"
-                        value={formik.values.categoria}
+                        id="modelo"
+                        name="modelo"
+                        value={formik.values.modelo}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         >
@@ -176,14 +201,14 @@ const handleUploadSuccess = async nombre =>{
                             <option value="postre"> Postre </option>
                             <option value="ensalada"> Ensalada </option>
 
-                        </select>
+                        </select> 
 
-                    </div>
+                    </div>*/}
 
-                    {formik.touched.categoria && formik.errors.categoria ? (
+                    {formik.touched.modelo && formik.errors.modelo ? (
                         <div className="mb-5 text-sm bg-red-100 border-l-4 border-red-500 text-red-700 p-2" role="alert">
                            <p className="font-bold"> Hubo un error: </p>
-                            <p>{formik.errors.categoria}</p>
+                            <p>{formik.errors.modelo}</p>
                         </div>
                     ) : null}
 
@@ -195,7 +220,7 @@ const handleUploadSuccess = async nombre =>{
                         id='imagen'
                         name='imagen'
                         randomizeFilename
-                        storageRef = {firebase.storage.ref('productos')}
+                        storageRef = {firebase.storage.ref('autos')}
                         onUploadStart={handleUploadStart}
                         onUploadError={handleUploadError}
                         onUploadSuccess={handleUploadSuccess}

@@ -10,8 +10,9 @@ import FileUploader from 'react-firebase-file-uploader'
 
 const ModificarPlato = ({setModificar, modificar, idModificar, infoModificar}) =>{
 
-    const {nombre, precio, categoria, descripcion, image, existencia, id } = infoModificar.plato; 
+    const {marca, año, modelo, descripcion, image, existencia, id } = infoModificar.plato; 
 
+   
 
     // states para las imagenes
 
@@ -29,9 +30,9 @@ const ModificarPlato = ({setModificar, modificar, idModificar, infoModificar}) =
 
     const formik = useFormik({
         initialValues:{
-            nombre:nombre,
-            precio: precio,
-            categoria:categoria,
+            nombre:marca,
+            precio: año,
+            categoria:modelo,
             descripcion: descripcion,
         },
 
@@ -57,14 +58,14 @@ const ModificarPlato = ({setModificar, modificar, idModificar, infoModificar}) =
             .required('La descripción es obligatoria'),
         }),
 
-        onSubmit: plato =>{
+        onSubmit: auto =>{
 
             // evita ejecutarse mientras se está cragando la imagen
             if (!subiendo){
             try {
-                plato.existencia= existencia;
-                plato.image = urlimagen;
-                firebase.db.collection('productos').doc(id).update(plato)
+                auto.existencia= existencia;
+                auto.image = urlimagen;
+                firebase.db.collection('autos').doc(id).update(auto)
                                
             } catch (error) {
                 console.log(error)
@@ -95,7 +96,7 @@ const handleUploadSuccess = async nombre =>{
 
     const url = await firebase
                 .storage
-                .ref('productos')
+                .ref('autos')
                 .child(nombre)
                 .getDownloadURL()
 
@@ -119,20 +120,20 @@ const handleUploadSuccess = async nombre =>{
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nombre">Nombre del plato</label>
 
                         <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-300 focus:shadow-none"
-                        id="nombre"
+                        id="marca"
                         type="text"
-                        placeholder="Nombre"
-                        value={formik.values.nombre}
+                        placeholder="Marca"
+                        value={formik.values.marca}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         />
 
                     </div>
 
-                    {formik.touched.nombre && formik.errors.nombre ? (
+                    {formik.touched.marca && formik.errors.marca ? (
                         <div className="mb-5 text-sm bg-red-100 border-l-4 border-red-500 text-red-700 p-2" role="alert">
                            <p className="font-bold"> Hubo un error: </p>
-                            <p>{formik.errors.nombre}</p>
+                            <p>{formik.errors.marca}</p>
                         </div>
                     ) : null}
 
@@ -140,21 +141,21 @@ const handleUploadSuccess = async nombre =>{
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="precio">Precio</label>
 
                         <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-300 focus:shadow-none"
-                        id="precio"
+                        id="año"
                         type="number"
-                        placeholder="20"
+                        placeholder="2021"
                         min="0"
-                        value={formik.values.precio}
+                        value={formik.values.año}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         />
 
                     </div>
 
-                    {formik.touched.precio && formik.errors.precio ? (
+                    {formik.touched.año && formik.errors.año ? (
                         <div className="mb-5 text-sm bg-red-100 border-l-4 border-red-500 text-red-700 p-2" role="alert">
                            <p className="font-bold"> Hubo un error: </p>
-                            <p>{formik.errors.precio}</p>
+                            <p>{formik.errors.año}</p>
                         </div>
                     ) : null}
 
@@ -197,7 +198,7 @@ const handleUploadSuccess = async nombre =>{
                         id='imagen'
                         name='imagen'
                         randomizeFilename
-                        storageRef = {firebase.storage.ref('productos')}
+                        storageRef = {firebase.storage.ref('auto')}
                         onUploadStart={handleUploadStart}
                         onUploadError={handleUploadError}
                         onUploadSuccess={handleUploadSuccess}                       

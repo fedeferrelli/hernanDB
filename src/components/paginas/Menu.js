@@ -21,11 +21,12 @@ const Menu = () =>{
     const [idModificar, setIdModificar] = useState('')
 
     const [infoModificar, setInfoModificar] = useState({})
+
     
     useEffect(() => {
 
        const obtenerPlato = () => {
-          firebase.db.collection('productos').onSnapshot(handleSnapshot); 
+          firebase.db.collection('autos').onSnapshot(handleSnapshot); 
 
         }
         obtenerPlato();
@@ -42,7 +43,6 @@ const Menu = () =>{
         });
 
         setPlatos(platos)
-
     }
     
 
@@ -56,11 +56,30 @@ const Menu = () =>{
                     modificar={modificar}
                     idModificar={idModificar}
                     infoModificar={infoModificar}/> :  
+         
+         
          <>
-        <h1 className="text-3xl font-light mb-4 text-center "> Menu </h1>
-        <Link to='/nuevo-platillo' className=" bg-gray-800 hover:bg-gray-700 hover:text-yellow-500 inline-block mb-5 p-2 text-white uppercase font-bold"> Agregar Plato </Link>
+        <h1 className="text-3xl font-light mb-4 text-center "> Stock de Autos </h1>
+        <Link to='/nuevo-platillo' className=" bg-gray-800 hover:bg-gray-700 hover:text-yellow-500 inline-block mb-5 p-2 text-white uppercase font-bold"> Agregar Auto </Link>
 
-        {platos.map((plato) => {          
+        <div className="mb-4">
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nombre">Buscar Auto</label>
+
+                        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-300 focus:shadow-none"
+                        id="nombre"
+                        type="text"
+                        placeholder="buscar"
+                        
+                        />
+
+                    </div>
+
+
+        {
+        
+       
+        
+        platos.map((plato) => {          
            return( <PlatoMenu
             key={plato.id}
             plato={plato}

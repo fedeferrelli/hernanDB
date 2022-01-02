@@ -1,12 +1,11 @@
 const firebaseConfig = {
-    apiKey: "AIzaSyD6S6bs8UOpbcZuRwaHTv0UyNTwoBX5na4",
-    authDomain: "restaurant-49670.firebaseapp.com",
-    projectId: "restaurant-49670",
-    storageBucket: "restaurant-49670.appspot.com",
-    messagingSenderId: "89594472917",
-    appId: "1:89594472917:web:398b0ca039b6318522b55c",
-
-  };
-
+  apiKey: "AIzaSyAfuUTsi16aCi674h7dNVxyYw-MMocQMa8",
+  authDomain: "hernancars-325e0.firebaseapp.com",
+  projectId: "hernancars-325e0",
+  storageBucket: "hernancars-325e0.appspot.com",
+  messagingSenderId: "325433764504",
+  appId: "1:325433764504:web:2f77e595ab9cdf38dffeed",
+  measurementId: "G-E96W9MMXFV"
+};
 
   export default firebaseConfig;
