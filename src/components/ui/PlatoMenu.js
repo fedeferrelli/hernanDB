@@ -110,7 +110,7 @@ const PlatoMenu = ({plato, setModificar, modificar, setIdModificar, setInfoModif
                          </p>
 
                          <p className="text-gray-600 mb-4  ">
-                              {descripcion}                           
+                              {descripcion.slice(0,50)} ...                           
                          </p> 
 
                     

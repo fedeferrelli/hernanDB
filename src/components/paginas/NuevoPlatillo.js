@@ -50,7 +50,7 @@ const NuevoPlatillo = () =>{
 
             
             modelo: Yup.string()
-            .min(3, 'Los nombres deben tener al menos 3 caracteres')
+            .min(1, 'Los nombres deben tener al menos 1 caracter')
                     .required('La categoría es obligatoria'),
 
             
