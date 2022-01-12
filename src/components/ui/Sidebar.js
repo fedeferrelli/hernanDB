@@ -13,7 +13,7 @@ const  Sidebar = () => {
 
                 <nav className="mt-4  flex md:flex-col md:mt-10  justify-evenly ">
 
-                    <NavLink className="p-1 text-gray-400 block hover:bg-yellow-500 hover:text-gray-900" end to="/menu">Listado de Autos</NavLink>
+                    <NavLink className="p-1 text-gray-400 block hover:bg-yellow-500 hover:text-gray-900" end to="/">Listado de Autos</NavLink>
 
                     <NavLink className="p-1 text-gray-400 block hover:bg-yellow-500 hover:text-gray-900" end to='/nuevo-platillo'>Agregar Autos</NavLink>
                 </nav>

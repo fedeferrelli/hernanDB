@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FirebaseContext } from '../../firebase/index';
 import PlatoMenu from '../ui/PlatoMenu';
 import ModificarPlato from './ModificarPlato';
+import _ from 'lodash';
 
 //import  Fragment  from 'react';
 
@@ -22,7 +23,7 @@ const Menu = () =>{
 
     const [infoModificar, setInfoModificar] = useState({})
 
-    const [buscar, setBuscar] = useState('f')
+    const [filtro, setFiltro] = useState('')
 
     const [autosParaMostar, setautosParaMostar] = useState({})
 
@@ -34,7 +35,8 @@ const Menu = () =>{
 
         }
         obtenerPlato();
-    }, []);
+        
+    }, [filtro]);
 
 // Snapshot permite manejar la base de datos en real time  
   
@@ -46,7 +48,9 @@ const Menu = () =>{
             }
         });
 
-        setPlatos(platos)
+        const platos_filtrados = _.filter(platos, plato => _.includes(_.lowerCase([plato.marca, plato.modelo, plato.año]), _.lowerCase(filtro)));
+        const platos_sorteados = _.sortBy(platos_filtrados, 'marca', 'modelo' ,'año');
+        setPlatos(platos_sorteados)
     }
  
 
@@ -64,18 +68,17 @@ const Menu = () =>{
          
          
          <>
-        <h1 className="text-3xl font-light mb-4 text-center "> Stock de Autos </h1>
-        <Link to='/nuevo-platillo' className=" bg-gray-800 hover:bg-gray-700 hover:text-yellow-500 inline-block mb-5 p-2 text-white uppercase font-bold"> Agregar Auto </Link>
+        <h1 className="text-3xl font-light mb-4 text-center "> Autos en el listado </h1>
+
 
         <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nombre">Buscar Auto</label>
 
-                        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-300 focus:shadow-none"
+                        <input className="shadow italic appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-300 focus:shadow-none"
                         id="buscar"
                         type="text"
-                        placeholder="buscar"
+                        placeholder="Buscar"
 
-                        onChange={e => setBuscar(e.target.value)} 
+                        onChange={e => setFiltro(e.target.value)} 
                         
                         />
 

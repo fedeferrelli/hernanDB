@@ -67,7 +67,7 @@ const PlatoMenu = ({plato, setModificar, modificar, setIdModificar, setInfoModif
                     
                     <img src={image} alt="imagen del auto" className=" object-cover object-center w-full h-36 "/>
                      
-                    <div className={existencia===true ? "mt-2 bg-slate-500 " :  "mt-2 bg-green-200 " }>
+      {/*               <div className={existencia===true ? "mt-2 bg-slate-500 " :  "mt-2 bg-green-200 " }>
                         <label className="mr-3 mt-2">
                             <span className="border-b-2 border-slate-700 mr-0.5" >En stock:</span>
                             <select 
@@ -79,7 +79,7 @@ const PlatoMenu = ({plato, setModificar, modificar, setIdModificar, setInfoModif
                                 <option value="false">No</option>    
                             </select>    
                         </label>    
-                    </div>
+                    </div> */}
 
                     </div>
 

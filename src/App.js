@@ -26,7 +26,7 @@ function App() {
 
       <Routes>
 
-        <Route exact strict path='/menu' element={<Menu/>}/>
+        <Route exact strict path='/' element={<Menu/>}/>
         <Route exact strict path='/nuevo-platillo' element={<NuevoPlatillo/>}/>
         <Route exact strict path='/modificar-plato' element={<ModificarPlato/>}/>
       </Routes>

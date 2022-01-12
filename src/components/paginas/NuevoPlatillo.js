@@ -65,7 +65,7 @@ const NuevoPlatillo = () =>{
                 plato.image = urlimagen;
                 firebase.db.collection('autos').add(plato)
 
-                navigate('/menu');
+                navigate('/');
                 
             } catch (error) {
                 console.log(error)
@@ -178,33 +178,6 @@ const handleUploadSuccess = async nombre =>{
                     ) : null}
 
 
-
-
-
-          {/*           <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="categoria">Modelo</label>
-
-                        <select
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-300 focus:shadow-none"
-                        id="modelo"
-                        name="modelo"
-                        value={formik.values.modelo}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        >
-
-                            <option value=""> Seleccione </option>
-                            <option value="desayuno"> Desayuno </option>
-                            <option value="almuerzo"> Almuerzo </option>
-                            <option value="cena"> Cena </option>
-                            <option value="bebida"> Bebidas </option>
-                            <option value="postre"> Postre </option>
-                            <option value="ensalada"> Ensalada </option>
-
-                        </select> 
-
-                    </div>*/}
-
                     {formik.touched.modelo && formik.errors.modelo ? (
                         <div className="mb-5 text-sm bg-red-100 border-l-4 border-red-500 text-red-700 p-2" role="alert">
                            <p className="font-bold"> Hubo un error: </p>
@@ -272,8 +245,8 @@ const handleUploadSuccess = async nombre =>{
 
                     <button 
                     
-                    className=" bg-red-800 w-full mt-5 p-2 text-white uppercase font-bold hover:bg-gray-900 hover:text-yellow-500"
-                    onClick={()=>navigate('/menu')}
+                    className=" bg-red-800 w-full mt-5 p-2 text-white uppercase font-bold hover:bg-red-900"
+                    onClick={()=>navigate('/')}
                     > cancelar </button>
 
                 </form>
