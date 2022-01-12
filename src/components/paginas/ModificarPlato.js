@@ -245,7 +245,7 @@ const handleUploadSuccess = async nombre =>{
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="descripcion">Descripción</label>
 
-                        <textarea className="h-30 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-300 focus:shadow-none"
+                        <textarea className="h-50 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-300 focus:shadow-none"
                         id="descripcion"
                         type="text"
                         placeholder="Descripción"
