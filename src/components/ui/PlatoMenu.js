@@ -65,7 +65,7 @@ const PlatoMenu = ({plato, setModificar, modificar, setIdModificar, setInfoModif
                 <div className="lg:flex">
                     <div className="lg:w-5/12 xl:w-3/12 h-42 grid place-items-center "> 
                     
-                    <img src={image} alt="imagen del auto" className=" object-none object-center w-full h-36 "/>
+                    <img src={image} alt="imagen del auto" className=" object-cover object-center w-full h-36 "/>
                      
                     <div className={existencia===true ? "mt-2 bg-slate-500 " :  "mt-2 bg-green-200 " }>
                         <label className="mr-3 mt-2">
